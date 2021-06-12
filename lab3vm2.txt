@@ -1,0 +1,101 @@
+Sat Jun 12 03:19:47 EDT 2021
+
+hostname:vm2.lab.jykim32.ops
+
+SELinux status:Enforcing
+
+INTERFACES
+TYPE=Ethernet
+PROXY_METHOD=none
+BROWSER_ONLY=no
+DEFROUTE=yes
+IPV4_FAILURE_FATAL=no
+IPV6INIT=yes
+IPV6_AUTOCONF=yes
+IPV6_DEFROUTE=yes
+IPV6_FAILURE_FATAL=no
+IPV6_ADDR_GEN_MODE=stable-privacy
+NAME=enp1s0
+UUID=26fb76d0-3767-496d-8f0d-9174b51041f6
+DEVICE=enp1s0
+ONBOOT=yes
+IPADDR=192.168.117.2
+PREFIX=24
+GATEWAY=192.168.117.1
+TYPE=Ethernet
+PROXY_METHOD=none
+BROWSER_ONLY=no
+BOOTPROTO=static
+DEFROUTE=yes
+IPV4_FAILURE_FATAL=no
+IPV6INIT=yes
+IPV6_AUTOCONF=yes
+IPV6_DEFROUTE=yes
+IPV6_FAILURE_FATAL=no
+IPV6_ADDR_GEN_MODE=stable-privacy
+NAME=enp2s0
+UUID=2527fb75-9e81-437c-a700-49f3fb39c3f8
+DEVICE=enp2s0
+ONBOOT=yes
+IPADDR=192.168.17.2
+PREFIX=24
+IPV6_PRIVACY=no
+
+Firewall configuration
+public (active)
+  target: default
+  icmp-block-inversion: no
+  interfaces: enp1s0 enp2s0
+  sources: 
+  services: cockpit dhcpv6-client ldap ldaps mountd nfs nfs3 rpc-bind ssh
+  ports: 
+  protocols: 
+  masquerade: no
+  forward-ports: 
+  source-ports: 
+  icmp-blocks: 
+  rich rules: 
+UUID:ff86ac20-01 ff86ac20-02 7c765f14-74f4-4c49-b1a5-f1a748ae418f 91e4317f-c549-4b56-8011-8184fbb1f702
+
+AUTHENTICATION PROFILE
+active profile: Profile ID: sssd Enabled features: None
+
+AUTHENTICATION ISSUES
+Issues identified by validators: 0
+
+Messages generated during configuration merging: 0
+
+Used configuration snippet files: 0
+
+AUTHENTICATION SETTINGS
+[sssd]
+services = nss,pam
+config_file_version = 2
+domains = default
+
+[sudo]
+
+[nss]
+homedir_substring = /home
+
+[pam]
+offline_credentials_expiration = 60
+
+[domain/default]
+ldap_id_use_start_tls = True
+cache_credentials = True
+ldap_search_base = dc=vm1,dc=lab,dc=jykim32,dc=ops
+id_provider = ldap
+auth_provider = ldap
+chpass_provider = ldap
+access_provider = ldap
+ldap_uri = ldaps://192.168.117.53
+ldap_chpass_uri = ldaps://192.168.117.53
+ldap_tls_reqcert = allow
+ldap_tls_cacert = /etc/openldap/certs/cacert.crt
+ldap_tls_cacertdir = /etc/openldap/certs
+ldap_search_timeout = 50
+ldap_network_timeout = 60
+ldap_access_order = filter
+ldap_access_filter = (objectClass=posixAccount)
+
